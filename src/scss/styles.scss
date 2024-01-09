@@ -1,0 +1,11 @@
+$base-color: purple;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  color: $base-color;
+}
