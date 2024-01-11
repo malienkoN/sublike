@@ -32,6 +32,7 @@ class FormValidator {
   constructor(form, fields) {
     this.form = form;
     this.fields = fields;
+    this.isValid = true;
   }
 
   initialize() {
@@ -40,13 +41,17 @@ class FormValidator {
   }
 
   validateOnSubmit() {
-    this.form.addEventListener('submit', (function (e) {
+    this.form.addEventListener('submit', (async (e) => {
       e.preventDefault();
+
+      this.isValid = true;
 
       this.fields.forEach(field => {
         const input = document.querySelector(`#${field}`);
         this.validateField(input);
       });
+
+      if (this.isValid) await this.sendMessage();
     }).bind(this));
   }
 
@@ -105,6 +110,44 @@ class FormValidator {
       errorMessage.innerText = message
       errorIcon.classList.remove('hidden')
       field.classList.add('input-error')
+      this.isValid = false;
+    }
+
+    if (status === 'clear') {
+      if (successIcon) successIcon.classList.add('hidden');
+    }
+  }
+
+  async sendMessage() {
+    const formData = new FormData(this.form);
+
+    if (formData) {
+      const url = 'sendmessage.php';
+      console.log(url);
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          this.form.reset();
+
+          // Set clear status for all fields
+          this.fields.forEach(field => {
+            const input = document.querySelector(`#${field}`);
+            this.setStatus(input, null, 'clear');
+          });
+
+          alert('Form sent!');
+        } else {
+          // Server returned an error status
+          alert('Error');
+        }
+      } catch (error) {
+        // Handle network issues, server-side errors, or unexpected issues
+        console.error('Error sending form data:', error);
+      }
     }
   }
 }

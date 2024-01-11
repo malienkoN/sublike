@@ -8,10 +8,10 @@
     if (trim($content)) {
         $content = "<b>Message from Site:</b>\n".$content;
         // Your bot's token that got from @BotFather
-        $apiToken = "6579960870:AAESNQY3UBrE0q9equbhnAg56KLJcNV7IA8";
+        $apiToken = "6349199497:AAFzqatRAdrnCsnWT-eh4kmHMd78CnFIpQw";
         $data = [
             // The user's telegram chat id
-            'chat_id' => 'testSublikeMessages',
+            'chat_id' => '@SublikeTestGetMessages',
             'text' => $content,
             'parse_mode' => 'HTML'
         ];
