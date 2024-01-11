@@ -1,0 +1,26 @@
+// Import variables
+@import '_variables';
+
+// Import components and modules
+@import 'components/button';
+@import 'modules/form';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $base-color;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  display: none;
+}
