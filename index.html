@@ -17,7 +17,7 @@
 
       <div class="input-group">
         <label for="username" class="label">Username</label>
-        <input id="username" placeholder="webcrunch" type="text" class="input">
+        <input id="username" name="username" type="text" class="input">
         <span class="error-message"></span>
         <svg width="20" height="20" class="icon icon-success hidden" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor">
@@ -36,7 +36,7 @@
 
       <div class="input-group">
         <label for="email" class="label">Email</label>
-        <input id="email" type="email" class="input" autocomplete placeholder="andy@web-crunch.com">
+        <input id="email" name="email" type="email" class="input">
         <span class="error-message"></span>
         <svg width="20" height="20" class="icon icon-success hidden" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor">
@@ -55,7 +55,7 @@
 
       <div class="input-group">
         <label for="password" class="label">Password</label>
-        <input id="password" type="password" class="input">
+        <input id="password" name="password" type="password" class="input">
         <span class="error-message"></span>
         <svg width="20" height="20" class="icon icon-success hidden" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor">
@@ -74,7 +74,7 @@
 
       <div class="input-group">
         <label for="password_confirmation" class="label">Password Confirmation</label>
-        <input id="password_confirmation" type="password" class="input">
+        <input id="password_confirmation" name="password-confirm" type="password" class="input">
         <span class="error-message"></span>
         <svg width="20" height="20" class="icon icon-success hidden" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor">
@@ -93,7 +93,7 @@
 
       <div class="input-group">
         <label for="message" class="label">Message</label>
-        <textarea id="message" class="input"></textarea>
+        <textarea id="message" name="message" class="input"></textarea>
         <span class="error-message"></span>
         <svg width="20" height="20" class="icon icon-success hidden" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor">
@@ -110,20 +110,10 @@
         </svg>
       </div>
 
-      <input type="submit" class="button" value="Create account">
+      <button class="button" type="submit">Create account</button>
 
     </form>
   </div>
-
-  <!-- <div id="app">
-    <h1>Hello World!</h1>
-    <form action="sendmessage.php" method="post">
-      <input required type="text" name="name" placeholder="Name">
-      <input required type="email" name="email" placeholder="E-mail">
-      <textarea required name="message" placeholder="Message"></textarea>
-      <button type="submit">Submit</button>
-    </form>
-  </div> -->
 
   <script type="module" src="./src/js/main.js"></script>
 </body>

@@ -3,31 +3,6 @@
 import 'normalize.css';
 import '../scss/main.scss';
 
-// const form = document.querySelector('form');
-// form.addEventListener('submit', function (e) {
-//   e.preventDefault();
-//   sendMessage(form);
-// });
-
-// async function sendMessage(form) {
-//   const formData = new FormData(form);
-
-//   if (formData) {
-//     const url = 'sendmessage.php';
-//     const response = await fetch(url, {
-//       method: "POST",
-//       body: formData
-//     });
-
-//     if (response.ok) {
-//       form.reset();
-//       alert('Form sent!');
-//     } else {
-//       alert('Error');
-//     }
-//   }
-// }
-
 class FormValidator {
   constructor(form, fields) {
     this.form = form;
@@ -41,18 +16,22 @@ class FormValidator {
   }
 
   validateOnSubmit() {
-    this.form.addEventListener('submit', (async (e) => {
+    this.form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      this.isValid = true;
+      try {
+        this.isValid = true;
 
-      this.fields.forEach(field => {
-        const input = document.querySelector(`#${field}`);
-        this.validateField(input);
-      });
+        this.fields.forEach(field => {
+          const input = document.querySelector(`#${field}`);
+          this.validateField(input);
+        });
 
-      if (this.isValid) await this.sendMessage();
-    }).bind(this));
+        if (this.isValid) await this.sendMessage();
+      } catch (err) {
+        console.error('Error sending message:', err);
+      }
+    });
   }
 
   validateOnEntry() {
@@ -123,7 +102,7 @@ class FormValidator {
 
     if (formData) {
       const url = 'sendmessage.php';
-      console.log(url);
+
       try {
         const response = await fetch(url, {
           method: "POST",
@@ -133,7 +112,6 @@ class FormValidator {
         if (response.ok) {
           this.form.reset();
 
-          // Set clear status for all fields
           this.fields.forEach(field => {
             const input = document.querySelector(`#${field}`);
             this.setStatus(input, null, 'clear');
@@ -141,11 +119,9 @@ class FormValidator {
 
           alert('Form sent!');
         } else {
-          // Server returned an error status
           alert('Error');
         }
       } catch (error) {
-        // Handle network issues, server-side errors, or unexpected issues
         console.error('Error sending form data:', error);
       }
     }
